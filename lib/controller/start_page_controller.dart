@@ -98,10 +98,12 @@ Future<void> _saveToDb(
   try {
     await kSqliteTool.appsTable.saveAll(models);
 
-    final Iterable<int> ids = models.map((EntryModel e) {
-      return e.id.attributes.id;
-    });
-    await kSqliteTool.topFreeAppsTable.saveAll(ids);
+    if (saveToTopFree) {
+      final Iterable<int> ids = models.map((EntryModel e) {
+        return e.id.attributes.id;
+      });
+      await kSqliteTool.topFreeAppsTable.saveAll(ids);
+    }
   } catch (error, stackTrace) {
     logU.e('Error occurred while trying to save', error, stackTrace);
   }
