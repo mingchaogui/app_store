@@ -12,6 +12,7 @@ class AuLoadingCustomScrollView extends StatelessWidget {
     this.pullBackDuration = const Duration(milliseconds: 300),
     this.refreshOffset = AuRefreshContainer.refreshOffset,
     this.reachToRefreshOffset = AuRefreshContainer.reachToRefreshOffset,
+    this.physics,
     required this.refresh,
     required this.slivers,
   });
@@ -33,13 +34,14 @@ class AuLoadingCustomScrollView extends StatelessWidget {
   /// The offset to be dragged far enough that an up event will run the onRefresh callback.
   final double? reachToRefreshOffset;
 
+  final ScrollPhysics? physics;
   final Widget refresh;
   final List<Widget> slivers;
 
   @override
   Widget build(BuildContext context) {
     Widget current = LoadingMoreCustomScrollView(
-      physics: const ClampingScrollPhysics(),
+      physics: physics,
       slivers: <Widget>[
         SliverToBoxAdapter(child: refresh),
         ...slivers,
