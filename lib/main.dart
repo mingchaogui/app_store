@@ -2,6 +2,7 @@ import 'package:app_store/controller/look_up_service.dart';
 import 'package:app_store/page/start_page.dart';
 import 'package:app_store/tool/sqlite_tool.dart';
 import 'package:app_store/util/logger.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,14 +25,22 @@ class AppStoreApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const StartPage(),
-      initialBinding: _AppStoreBindings(),
+      initialBinding: _AsBindings(),
+      scrollBehavior: _AsScrollBehavior(),
     );
   }
 }
 
-class _AppStoreBindings extends Bindings {
+class _AsBindings extends Bindings {
   @override
   void dependencies() {
     Get.put(LookUpService());
   }
+}
+
+class _AsScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => const <PointerDeviceKind>{
+        ...PointerDeviceKind.values,
+      };
 }

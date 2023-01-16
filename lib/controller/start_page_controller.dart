@@ -43,8 +43,8 @@ class TopGrossingAppLoadingBase extends AuLoadingBase<EntryModel> {
   }) {
     return AppStoreClient.to()
         .topGrossingApplications()
-        .then((ApplicationsModel value) {
-      _saveToDb(value.feed.entry);
+        .then((ApplicationsModel value) async {
+      unawaited(_saveToDb(value.feed.entry));
 
       assignAll(value.feed.entry);
       return true;

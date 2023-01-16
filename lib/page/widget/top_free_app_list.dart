@@ -10,8 +10,7 @@ class TopFreeAppList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AuLoadingList<EntryModel>(
-      buildSliver: true,
+    return AuLoadingSliverList<EntryModel>(
       sourceList: StartPageController.to.freeApps,
       itemBuilder: _buildItem,
       separatorBuilder: _buildSeparator,

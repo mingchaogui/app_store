@@ -22,7 +22,7 @@ extension AsIterableExtensions<T> on Iterable<T> {
   }
 }
 
-extension AsListExt<T> on List<T?> {
+extension ListExt<T> on List<T?> {
   List<T?> removeNull() {
     removeWhere((T? element) => element == null);
     return this;
