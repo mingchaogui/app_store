@@ -26,7 +26,7 @@ class AppStoreApp extends StatelessWidget {
       ),
       home: const StartPage(),
       initialBinding: _AsBindings(),
-      scrollBehavior: _AsScrollBehavior(),
+      scrollBehavior: const _AsScrollBehavior(),
     );
   }
 }
@@ -39,6 +39,8 @@ class _AsBindings extends Bindings {
 }
 
 class _AsScrollBehavior extends MaterialScrollBehavior {
+  const _AsScrollBehavior();
+
   @override
   Set<PointerDeviceKind> get dragDevices => const <PointerDeviceKind>{
         ...PointerDeviceKind.values,
